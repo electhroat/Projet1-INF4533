@@ -2,9 +2,28 @@
 <html>
 
 <head>
-  <h1> restaurants de la région</h1>
+  <h1>Restaurants!</h1>
 
-  <input type="text" id="myInput" onkeyup="recherche()" placeholder="rechercher pour un restaurant environnant" title="type in a name">
+
+
+<input type="text" id="myInput" onkeyup="recherche()" placeholder="rechercher pour un restaurant environnant" title="type in a name">
+
+ <select id = "myOptions">
+    <option value="name">name</option>
+    <option value="localisation"> localisation </option>
+    <option value = "type">types </option>
+    <option value = "hours">heures d'ouverture</option>
+
+  </select>
+
+    <div style="display:none;" id="resto-clone">
+      <h1>Title</h1>
+      <p>Description</p>
+    </div>
+
+    <div class="container">
+
+    </div>
 
   <script src="restaurants.js"></script>
   <script src="devoir.js"></script>
@@ -16,13 +35,5 @@
 </head>
 
 <body>
-  <input id="search" type="text"/> <select> <option value="name">name</option></select>
 
-  <div style="display:none;" id="resto-clone">
-    <h1>Title</h1>
-    <p>Description</p>
-  </div>
-
-  <div class="container">
-
-  </div>
+</body>
