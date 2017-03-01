@@ -3,6 +3,16 @@ font-size: 150%;
 font-family: monospace;
 color: black;
 background-color: FloralWhite;
+
+}
+ul#myUL{
+border: 2px solid black;
+border-radius: 5px;
+
+}
+
+div#hours{
+  max-width: 1000px;
 }
 
 .listRestos td{
@@ -18,6 +28,7 @@ div#hours{
 background-position: 10px 12px;
 background-repeat: no-repeat;
 width: 50%;
+<<<<<<< HEAD
 font-size: 16px;
 font-family: inherit;
 padding: 12px 20px 12px 30px;
@@ -31,17 +42,44 @@ background-repeat: no-repeat;
 width: 15%;
 font-family:  inherit;
 font-size: 16px;
+=======
+font-size: 16px;
+font-family: inherit;
+>>>>>>> origin/master
 padding: 12px 20px 12px 30px;
 border: 1px solid #ddd;
 margin-bottom: 12px;
 }
+<<<<<<< HEAD
+=======
+#myOptions{
+background-position: 10px 12px;
+background-repeat: no-repeat;
+width: 15%;
+font-family:  inherit;
+font-size: 16px;
+padding: 12px 20px 12px 30px;
+border: 1px solid #ddd;
+margin-bottom: 12px;
+
+}
+>>>>>>> origin/master
 
 div {
   font-size: 110%;
   text-align: justify;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/master
 }
 
 #nom {
   text-align: left;
   color: HotPink;
+<<<<<<< HEAD
+=======
+  
+>>>>>>> origin/master
 }

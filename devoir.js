@@ -5,10 +5,14 @@ function showAllRestos(){
   for(var i = 0; i < resto.length; i++){
     var html = "";
 
+<<<<<<< HEAD
     var newRowForResto = list.insertRow(-1);
     var newCell = newRowForResto.insertCell(0);
 
     newRowForResto.id = resto[i].name;
+=======
+  html += "<li><div id='nom'><a href =" + r.website + ">" + r.name + "</a></div></li>";
+>>>>>>> origin/master
 
     html += "<tr><td><div id=\"nom\"><a href =" + resto[i].website + ">" + resto[i].name + "</a></div></td></tr>";
 
@@ -70,10 +74,19 @@ function searchName(subject){
   for(i = 0; i < resto.length; i++){
     if(resto[i].name.toUpperCase().includes(subject.toUpperCase())){
 
+<<<<<<< HEAD
       var html = "";
 
       var newRowForResto = list.insertRow(-1);
       var newCell = newRowForResto.insertCell(0);
+=======
+  html += "<div>" + r.formatted_address + "</div>";
+
+  if(r.opening_hours === undefined){
+    html += "<div> opening hours are unavailable</div>";
+
+  }else{html += "<div id ='hours'> Operation Hours: " + (r.opening_hours.weekday_text).toString() +  "</div>";
+>>>>>>> origin/master
 
       newRowForResto.id = resto[i].name;
 
@@ -96,6 +109,7 @@ function searchName(subject){
       newCell.innerHTML = html;
     }
   }
+<<<<<<< HEAD
 
 }
 
@@ -142,10 +156,35 @@ function searchTypes(subject){
     for(i = 0; i < resto.length; i++){
       if(resto[i].types.toUpperCase().includes(subject.toUpperCase())){
       var html = "";
+=======
+  html += "</ul>";
+});
+
+
+
+document.write(html);
+
+
+//fonction de recherche qui cache ou montre les balises <ul> du document HTML en fonction de l'entrée de l'utilisateur
+
+
+
+function recherche(){ $('#myInput').on('input', function() {
+
+  $(".container").html("");
+
+  resto.forEach(function(resto) {
+
+
+    console.log($('#myInput').val());
+
+    if (resto.name.indexOf($('#myInput').val()) != -1) {
+>>>>>>> origin/master
 
       var newRowForResto = list.insertRow(-1);
       var newCell = newRowForResto.insertCell(0);
 
+<<<<<<< HEAD
       newRowForResto.id = resto[i].name;
 
       html += "<tr><td><div id=\"nom\"><a href =" + resto[i].website + ">" + resto[i].name + "</a></div></td></tr>";
@@ -155,6 +194,13 @@ function searchTypes(subject){
       } else {
         html += "<tr><td><div>rating: " + resto[i].rating + "/5" + "</div></td></tr>";
       }
+=======
+      var clone = $("#resto-clone").clone();
+
+      clone.html(resto.name);
+
+      clone.show();
+>>>>>>> origin/master
 
       html += "<tr><td><div>" + resto[i].formatted_address + "</div></td></tr>";
 
@@ -169,6 +215,7 @@ function searchTypes(subject){
     }
 }
 
+<<<<<<< HEAD
 //Fonction qui cherche par heures d'ouverture de resto
 function searchHours(subject){
 
@@ -204,3 +251,10 @@ function searchHours(subject){
       }
     }
   }
+=======
+      $(".container").append(clone);
+    }
+
+  });
+});}
+>>>>>>> origin/master
