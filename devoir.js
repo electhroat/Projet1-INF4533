@@ -1,72 +1,206 @@
-var html = "";
-resto.forEach(function(r) {
+//Fonction qui affiche tous les restaurants
+function showAllRestos(){
+  var list = document.getElementById("listAllRestos");
 
-  html += "<ul id='myUL'>";
+  for(var i = 0; i < resto.length; i++){
+    var html = "";
 
-  html += "<li><div id='nom'>" + r.name + "</div></li>";
+    var newRowForResto = list.insertRow(-1);
+    var newCell = newRowForResto.insertCell(0);
 
-  html += "<div><a href =" + r.website + "> visit website </a></div>";
+    newRowForResto.id = resto[i].name;
 
-  if (r.rating === undefined) {
-    html += "<div> rating is undefined</div>";
-  } else {
-    html += "<div>rating: " + r.rating + "/5" + "</div>";
-  }
+    html += "<tr><td><div id=\"nom\"><a href =" + resto[i].website + ">" + resto[i].name + "</a></div></td></tr>";
 
-  html += "<div>" + r.formatted_address + "</div>";
-  if(r.opening_hours === undefined){
-    html += "<div> opening hours are unavailable</div>";
-
-  }else{html += "<div> Operation Hours: " + (r.opening_hours.weekday_text).toString() +  "</div>";
-
-  }
-
-  html += "</ul>";
-})
-console.log(resto);
-document.write(html);
-
-function recherche(){ $('#search').on('input', function() {
-  $(".container").html("");
-  restos.forEach(function(resto) {
-    console.log($('#search').val());
-    if (resto.name.indexOf($('#search').val()) !== -1) {
-      var clone = $("#resto-clone").clone();
-
-      clone.recherche("h1").html(resto.name);
-      clone.recherche("p").html(resto.desc);
-      clone.show();
-      $(".container").append(clone);
+    if (resto[i].rating === undefined) {
+      html += "<tr><td><div> rating is undefined</div></td></tr>";
+    } else {
+      html += "<tr><td><div>rating: " + resto[i].rating + "/5" + "</div></td></tr>";
     }
 
-  });
-});}
+    html += "<tr><td><div>" + resto[i].formatted_address + "</div></td></tr>";
 
+    if(resto[i].opening_hours === undefined){
+      html += "<tr><td><div> opening hours are unavailable</div></td></tr>";
 
+    }else{html += "<tr><td><div id =\"hours\"> Operation Hours: " + (resto[i].opening_hours.weekday_text).toString() +  "</div></td></tr>";
 
-//function myFunction() {
-  //  var input, filter, ul, li, a, i;
-    //input = restaurant.getElementById("myInput");
-    //filter = input.value.toUpperCase();
-    //ul = restaurant.getElementById("myUL");
-    //li = ul.getElementsByTagName("li");
-    //for (i = 0; i < li.length; i++) {
-      //  a = li[i].getElementsByTagName("li")[0];
-        //if (a.r.name.toUpperCase().indexOf(filter) > -1) {
-//
-  //          li[i].style.display = "";
-    //    } else {
-//
-  //          li[i].style.display = "none";
+    }
+    newCell.innerHTML = html;
+  }
+}
 
-    //    }
-  //}
-//}
-//document.write(myUl);
+//Fonction pour appeler la bonne recherche
+//Cette fonction n'est présentement pas appelée
+function callSearch(){
+  var list = document.getElementById("listAllRestos");
+  while(list.rows.length > 0) {
+    list.deleteRow(0);
+  }
+  //Récupère le choix fait par le menu déroulant
+  var choice = document.getElementById("myOptions").value;
 
+  //Récupère l'information de la recherche
+  var searchSubject = document.getElementById("myInput").value;
 
+  //Test pour réagir en fonction du choix faire dans le menu déroulant
+  if(searchSubject == ""){
+    //Appelle la fonction qui affiche tous les restos si le champs de recherche est vide
+    showAllRestos();
+  } else if(choice == "name"){
+    //Appelle la fonction qui cherche par nom
+    searchName(searchSubject);
+  } else if (choice == "localisation"){
+    //Appelle la fonction qui cherche par address
+    searchAddress(searchSubject);
+  } else if (choice == "types"){
+    //Appelle la fonction qui cherche par type
+    searchTypes(searchSubject);
+  } else if (choice == "hours"){
+    //Appelle la fonction qui cherche par heures d'ouverture
+    searchHours(searchSubject);
+  }
+}
 
-console.log(resto[0].name);
+//Fonction qui cherche par nom de resto
+function searchName(subject){
 
-console.log(resto[12].reviews[1]);
-////questions en classe
+  var list = document.getElementById("listAllRestos");
+
+  for(i = 0; i < resto.length; i++){
+    if(resto[i].name.toUpperCase().includes(subject.toUpperCase())){
+
+      var html = "";
+
+      var newRowForResto = list.insertRow(-1);
+      var newCell = newRowForResto.insertCell(0);
+
+      newRowForResto.id = resto[i].name;
+
+      html += "<tr><td><div id=\"nom\"><a href =" + resto[i].website + ">" + resto[i].name + "</a></div></td></tr>";
+
+      if (resto[i].rating === undefined) {
+        html += "<tr><td><div> rating is undefined</div></td></tr>";
+      } else {
+        html += "<tr><td><div>rating: " + resto[i].rating + "/5" + "</div></td></tr>";
+      }
+
+      html += "<tr><td><div>" + resto[i].formatted_address + "</div></td></tr>";
+
+      if(resto[i].opening_hours === undefined){
+        html += "<tr><td><div> opening hours are unavailable</div></td></tr>";
+
+      }else{html += "<tr><td><div id =\"hours\"> Operation Hours: " + (resto[i].opening_hours.weekday_text).toString() +  "</div></td></tr>";
+
+      }
+      newCell.innerHTML = html;
+    }
+  }
+
+}
+
+//Fonction qui cherche par address de resto
+function searchAddress(subject){
+
+  var list = document.getElementById("listAllRestos");
+
+    for(i = 0; i < resto.length; i++){
+      if(resto[i].formatted_address.toUpperCase().includes(subject.toUpperCase())){
+        var html = "";
+
+        var newRowForResto = list.insertRow(-1);
+        var newCell = newRowForResto.insertCell(0);
+
+        newRowForResto.id = resto[i].name;
+
+        html += "<tr><td><div id=\"nom\"><a href =" + resto[i].website + ">" + resto[i].name + "</a></div></td></tr>";
+
+        if (resto[i].rating === undefined) {
+          html += "<tr><td><div> rating is undefined</div></td></tr>";
+        } else {
+          html += "<tr><td><div>rating: " + resto[i].rating + "/5" + "</div></td></tr>";
+        }
+
+        html += "<tr><td><div>" + resto[i].formatted_address + "</div></td></tr>";
+
+        if(resto[i].opening_hours === undefined){
+          html += "<tr><td><div> opening hours are unavailable</div></td></tr>";
+
+        }else{html += "<tr><td><div id =\"hours\"> Operation Hours: " + (resto[i].opening_hours.weekday_text).toString() +  "</div></td></tr>";
+
+        }
+        newCell.innerHTML = html;
+      }
+    }
+}
+
+//Fonction qui cherche par type de resto
+function searchTypes(subject){
+
+  var list = document.getElementById("listAllRestos");
+
+    for(i = 0; i < resto.length; i++){
+      if(resto[i].types.toUpperCase().includes(subject.toUpperCase())){
+      var html = "";
+
+      var newRowForResto = list.insertRow(-1);
+      var newCell = newRowForResto.insertCell(0);
+
+      newRowForResto.id = resto[i].name;
+
+      html += "<tr><td><div id=\"nom\"><a href =" + resto[i].website + ">" + resto[i].name + "</a></div></td></tr>";
+
+      if (resto[i].rating === undefined) {
+        html += "<tr><td><div> rating is undefined</div></td></tr>";
+      } else {
+        html += "<tr><td><div>rating: " + resto[i].rating + "/5" + "</div></td></tr>";
+      }
+
+      html += "<tr><td><div>" + resto[i].formatted_address + "</div></td></tr>";
+
+      if(resto[i].opening_hours === undefined){
+        html += "<tr><td><div> opening hours are unavailable</div></td></tr>";
+
+      }else{html += "<tr><td><div id =\"hours\"> Operation Hours: " + (resto[i].opening_hours.weekday_text).toString() +  "</div></td></tr>";
+
+      }
+      newCell.innerHTML = html;
+      }
+    }
+}
+
+//Fonction qui cherche par heures d'ouverture de resto
+function searchHours(subject){
+
+  var list = document.getElementById("listAllRestos");
+
+    for(i = 0; i < resto.length; i++){
+      if(true){
+        //Il faudrait remplacer 'true' pour quelque chose comme:'resto[i].types.toUpperCase().includes(subject.toUpperCase())' dans le if
+
+      var html = "";
+      var newRowForResto = list.insertRow(-1);
+      var newCell = newRowForResto.insertCell(0);
+
+      newRowForResto.id = resto[i].name;
+
+      html += "<tr><td><div id=\"nom\"><a href =" + resto[i].website + ">" + resto[i].name + "</a></div></td></tr>";
+
+      if (resto[i].rating === undefined) {
+        html += "<tr><td><div> rating is undefined</div></td></tr>";
+      } else {
+        html += "<tr><td><div>rating: " + resto[i].rating + "/5" + "</div></td></tr>";
+      }
+
+      html += "<tr><td><div>" + resto[i].formatted_address + "</div></td></tr>";
+
+      if(resto[i].opening_hours === undefined){
+        html += "<tr><td><div> opening hours are unavailable</div></td></tr>";
+
+      }else{html += "<tr><td><div id =\"hours\"> Operation Hours: " + (resto[i].opening_hours.weekday_text).toString() +  "</div></td></tr>";
+
+      }
+      newCell.innerHTML = html;
+      }
+    }
+  }

@@ -2,9 +2,12 @@
 <html>
 
 <head>
-  <h1> restaurants de la région</h1>
+  <h1>Restaurants!</h1>
 
-  <input type="text" id="myInput" onkeyup="recherche()" placeholder="rechercher pour un restaurant environnant" title="type in a name">
+
+
+
+<input type="text" id="myInput" onkeyup="callSearch()" placeholder="rechercher pour un restaurant environnant" title="type in a name">
 
   <script src="restaurants.js"></script>
   <script src="devoir.js"></script>
@@ -15,14 +18,19 @@
   <title>Restaurants </title>
 </head>
 
-<body>
-  <input id="search" type="text"/> <select> <option value="name">name</option></select>
+<!––'onload="showAllRestos" est appelée lorsque la page est chargé pour la première fois, ce qui affiche tous les restos'––>
+<body onload="showAllRestos()">
 
-  <div style="display:none;" id="resto-clone">
-    <h1>Title</h1>
-    <p>Description</p>
-  </div>
+   <select id = "myOptions">
+      <option value="name">name</option>
+      <option value="localisation"> localisation </option>
+      <option value="type">types </option>
+      <option value="hours">heures d'ouverture</option>
+    </select>
 
-  <div class="container">
+<!-La liste de chaque resto est sotcké dans la 'table' ci-dessous––>
 
-  </div>
+      <table id="listAllRestos" class="listRestos">
+
+      </table>
+</body>
