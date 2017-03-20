@@ -1,4 +1,4 @@
-//Fonction qui affiche tous les restaurants
+  //Fonction qui affiche tous les restaurants
 function showAllRestos(){
   var list = document.getElementById("listAllRestos");
 
@@ -12,7 +12,7 @@ function showAllRestos(){
     newRowForResto.id = resto[i].name;
 =======
   html += "<li><div id='nom'><a href =" + r.website + ">" + r.name + "</a></div></li>";
->>>>>>> origin/master
+
 
     html += "<tr><td><div id=\"nom\"><a href =" + resto[i].website + ">" + resto[i].name + "</a></div></td></tr>";
 
